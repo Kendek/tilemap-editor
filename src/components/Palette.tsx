@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { TilesetContext } from "../context/TilesetContext"
+import PaletteTile from "./PaletteTile"
 
 
 const Palette = () => {
@@ -19,7 +20,14 @@ const Palette = () => {
         style={{gridTemplateColumns: `repeat(${selectedTileset ? (selectedTileset.size.x / 16) : 0}, 1fr)` }}
     >
 
-        {tileNumber && Array(tileNumber).fill("").map((_, idx) => <div>{idx}</div>)}
+        {tileNumber && selectedTileset && Array(tileNumber).fill("").map((_, idx) => 
+        <PaletteTile 
+          key={idx}
+          idx={idx}
+          image={selectedTileset.image}
+          columnNumber={selectedTileset.size.x / 16}
+        />)}
+        
     </div>
   )
 }
